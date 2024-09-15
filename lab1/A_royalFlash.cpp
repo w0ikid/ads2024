@@ -1,40 +1,37 @@
 #include <iostream>
-#include <deque>
 #include <vector>
-
+#include <deque>
 using namespace std;
 
-vector<int> reverseProcess(int n) {
-    deque<int> dq;
+//#include Bismillah!!!!
+//WARNING: say Bismillah before working
+//shit by mishanya bfg
 
-    // Начинаем с последней карты и выполняем шаги в обратном порядке
-    for (int i = n; i >= 1; --i) {
-        // Кладём карту с номером i в начало
-        dq.push_front(i);
-
-        // Перемещаем последние i-1 карт в конец колоды
-        for (int j = 0; j < i - 1; ++j) {
-            dq.push_front(dq.back());  // Перемещаем последнюю карту в начало
-            dq.pop_back();             // Удаляем её с конца
+vector <int> deck_gen (int size){
+    deque <int> deck;
+    for (int i = size; i >= 1; i--){
+        deck.push_front(i);
+        
+        for(int j = 0; j < i; j++){
+                deck.push_front(deck.back());
+                deck.pop_back();
+            }
         }
-    }
 
-    // Преобразуем deque в вектор для вывода
-    vector<int> result(dq.begin(), dq.end());
-    return result;
+    return vector<int>(deck.begin(), deck.end());
 }
 
-int main() {
-    int n;
-    cin >> n;
+int main(){
+    int n, row; cin >> n;
 
-    vector<int> result = reverseProcess(n);
+    while(n--){
+        cin >> row;
+        for(auto i : deck_gen(row)){
+            cout << i << " ";
+        }
 
-    // Выводим результат
-    for (int i = 0; i < n; ++i) {
-        cout << result[i] << " ";
+        cout << "\n";
     }
-    cout << endl;
-
+   
     return 0;
 }
