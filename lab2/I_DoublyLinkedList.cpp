@@ -37,7 +37,7 @@ public:
             this->tail = newNode;
         } else {
             newNode->prev = tail;
-            head->next = newNode;
+            tail->next = newNode;
             tail = newNode;
         }
     }
